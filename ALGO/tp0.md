@@ -153,5 +153,3 @@ Voulez-vous afficher le contenu de Random100.txt ? (o/n): o
 
 ```
 
-with open('README.md', 'w', encoding='utf-8') as f:
-    f.write(markdown_content)
