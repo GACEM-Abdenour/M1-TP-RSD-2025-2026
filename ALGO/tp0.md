@@ -124,6 +124,33 @@ Génération de Random100.txt...
   Progression: 100/100
 ✓ Random100.txt créé avec succès!
 
+
+Voulez-vous afficher le contenu de Random100.txt ? (o/n): o
+
+=== Contenu du fichier Random100.txt ===
+1: 8743807
+2: 8321543
+3: 6386711
+4: 4194439
+5: 6357667
+6: 6232159
+7: 4661353
+8: 2974759
+9: 923851
+10: 1129433
+11: 8537839
+12: 9185149
+13: 4992359
+14: 9649261
+15: 4141691
+16: 334403
+17: 7377191
+18: 9361423
+19: 6931193
+20: 8675743
+
+--- Appuyez sur Entrée pour continuer ---
+
 ```
 
 with open('README.md', 'w', encoding='utf-8') as f:
