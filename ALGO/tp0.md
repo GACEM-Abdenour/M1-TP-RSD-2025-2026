@@ -107,19 +107,24 @@ Nombre premier N
 - Les résultats sont enregistrés dans le répertoire du programme sous leurs noms respectifs.  
 - Les fichiers peuvent être utilisés pour tester des programmes de primalité ou de cryptographie (RSA, Miller–Rabin, etc.).
 
-## 🏁 Exemple de session
+## Exemple de session
 ```text
-Votre choix: 4
-Combien de catégories de nombres de chiffres différents voulez-vous ? 3
-Combien de nombres premiers voulez-vous par catégorie ? 5
-À partir de combien de chiffres voulez-vous commencer ? 2
+Votre choix: 1
 
-→ Génère Test-2.txt avec 15 nombres premiers de 2 à 4 chiffres.
+Génération de Random100.txt...
+  Progression: 10/100
+  Progression: 20/100
+  Progression: 30/100
+  Progression: 40/100
+  Progression: 50/100
+  Progression: 60/100
+  Progression: 70/100
+  Progression: 80/100
+  Progression: 90/100
+  Progression: 100/100
+✓ Random100.txt créé avec succès!
+
 ```
-
-## Auteur
-Projet écrit en C à des fins pédagogiques pour générer des jeux de test de nombres premiers.
-'''
 
 with open('README.md', 'w', encoding='utf-8') as f:
     f.write(markdown_content)
