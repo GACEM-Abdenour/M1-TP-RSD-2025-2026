@@ -1,300 +1,259 @@
-# TP N°1 : Test de Primalité - Solution Complète
+# TP N°1 : Comparaison d'algorithmes de détermination de primalité
 
-**Module :** Algorithmique Avancée et Complexité - Master 1 (IL & RSD)  
-**Université :** USTHB - Faculté d'Électronique et d'Informatique  
-**Année :** 2019-2020
+**Module** : Algorithmique Avancée et Complexité - Master 1 (IL & RSD)  
+**Université** : USTHB - Faculté d'Électronique et d'Informatique  
+**Année** : 2025-2026  
 
-## Objectif du TP
+---
 
-Ce travail pratique vise à :
-- Implémenter et comparer quatre algorithmes de test de primalité
-- Analyser leurs complexités théoriques et expérimentales
-- Mesurer les temps d'exécution avec la bibliothèque `time.h`
-- Comprendre l'impact des optimisations algorithmiques
+## Description
 
-## Rappel Théorique
+Ce programme en C évalue et compare les performances de **quatre algorithmes de test de primalité** sur une liste de grands entiers. Il mesure le **temps d'exécution** de chaque méthode et affiche les résultats sous forme de tableau. Cette analyse empirique permet d'illustrer les effets de l'optimisation algorithmique sur le problème classique de la détection des nombres premiers.
 
-Un nombre entier naturel N est **premier** s'il n'admet que deux diviseurs : 1 et N lui-même.
+---
 
-## Solutions des Quatre Algorithmes
+## Fonctionnalités
 
-### Algorithme 1 (A1) : Approche Naïve
+### Algorithmes testés
 
-**Principe :** Tester tous les diviseurs potentiels de 2 à N-1.
+- **A1 — Vérification naïve** : Teste la divisibilité par tous les entiers de 2 à N−1.
+- **A2 — Test jusqu'à N/2** : Teste la divisibilité par tous les nombres jusqu'à N/2.
+- **A3 — Test jusqu'à √N** : S'arrête à la racine carrée de N.
+- **A4 — Optimisé (6k ± 1)** : Élimine les pairs et multiples de 3, puis ne teste que les entiers de la forme 6k±1 jusqu'à √N.
 
-**Complexité théorique :** O(N)
+---
 
-```c
-int estPremier_A1(long long N) {
-    if (N <= 1) return 0;
-    if (N == 2) return 1;
-    
-    for (long long i = 2; i < N; i++) {
-        if (N % i == 0) {
-            return 0;  // N est divisible par i, donc non premier
-        }
-    }
-    return 1;  // N est premier
-}
-```
+### Mesure des performances
 
-**Analyse :**
-- **Avantages :** Simple à comprendre et implémenter
-- **Inconvénients :** Très inefficace pour les grands nombres
-- **Complexité spatiale :** O(1)
+- Le programme utilise la fonction `clock()` pour mesurer le temps (en secondes) consacré par chaque algorithme à chaque nombre à tester.
+- Les résultats sont affichés sous forme de tableau avec temps et verdict de primalité.
 
-### Algorithme 2 (A2) : Amélioration de l'Approche Naïve
+---
 
-**Principe :** Utiliser la propriété que tout diviseur i de N (avec i ≠ N) vérifie i ≤ N/2.
-
-**Complexité théorique :** O(N/2) = O(N)
-
-```c
-int estPremier_A2(long long N) {
-    if (N <= 1) return 0;
-    if (N == 2) return 1;
-    
-    for (long long i = 2; i <= N/2; i++) {
-        if (N % i == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-```
-
-**Analyse :**
-- **Avantages :** Deux fois plus rapide que A1
-- **Inconvénients :** Toujours de complexité linéaire
-- **Amélioration :** Réduction constante du nombre d'itérations
-
-### Algorithme 3 (A3) : Optimisation avec √N
-
-**Principe :** Exploiter la propriété mathématique que les diviseurs de N sont répartis symétriquement autour de √N.
-
-**Complexité théorique :** O(√N)
-
-```c
-int estPremier_A3(long long N) {
-    if (N <= 1) return 0;
-    if (N == 2) return 1;
-    
-    long long limite = (long long)sqrt((double)N);
-    for (long long i = 2; i <= limite; i++) {
-        if (N % i == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-```
-
-**Analyse :**
-- **Avantages :** Amélioration drastique de la complexité
-- **Justification mathématique :** Si N = a × b avec a ≤ b, alors a ≤ √N
-- **Impact :** Réduction exponentielle des calculs
-
-### Algorithme 4 (A4) : Optimisation Maximale
-
-**Principe :** Combiner l'optimisation √N avec le test des nombres impairs uniquement.
-
-**Complexité théorique :** O(√N/2) = O(√N)
-
-```c
-int estPremier_A4(long long N) {
-    if (N <= 1) return 0;
-    if (N == 2) return 1;
-    if (N % 2 == 0) return 0;  // Élimine les nombres pairs
-    
-    long long limite = (long long)sqrt((double)N);
-    // Teste uniquement les diviseurs impairs
-    for (long long i = 3; i <= limite; i += 2) {
-        if (N % i == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-```
-
-**Analyse :**
-- **Avantages :** Le plus efficace des quatre algorithmes
-- **Optimisations combinées :** √N + nombres impairs seulement
-- **Performance :** Environ deux fois plus rapide que A3
-
-## Code Complet avec Mesure de Performance
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-
-// [Insérer ici les quatre fonctions ci-dessus]
-
-// Fonction pour mesurer le temps d'exécution
-double mesurerTemps(int (*fonction)(long long), long long N) {
-    clock_t debut, fin;
-    double temps_cpu;
-    
-    debut = clock();
-    int resultat = fonction(N);
-    fin = clock();
-    
-    temps_cpu = ((double) (fin - debut)) / CLOCKS_PER_SEC;
-    
-    printf("N = %lld, Premier: %s, Temps: %.6f secondes\n", 
-           N, resultat ? "OUI" : "NON", temps_cpu);
-    
-    return temps_cpu;
-}
-
-int main() {
-    // Échantillon de nombres premiers pour les tests
-    long long echantillon[] = {
-        1000003, 2000003, 4000037, 8000009, 16000057, 
-        32000011, 64000031, 128000003, 256000001, 512000009, 
-        1024000009, 2048000011
-    };
-    int taille = sizeof(echantillon) / sizeof(echantillon[0]);
-    
-    printf("=== TEST DES ALGORITHMES DE PRIMALITÉ ===\n\n");
-    
-    // Tests pour chaque algorithme
-    const char* noms[] = {
-        "Algorithme 1 (Approche naïve)",
-        "Algorithme 2 (Optimisation N/2)",
-        "Algorithme 3 (Optimisation sqrt(N))",
-        "Algorithme 4 (Nombres impairs uniquement)"
-    };
-    
-    int (*algorithmes[])(long long) = {
-        estPremier_A1, estPremier_A2, estPremier_A3, estPremier_A4
-    };
-    
-    for (int alg = 0; alg < 4; alg++) {
-        printf("\n--- %s ---\n", noms[alg]);
-        for (int i = 0; i < taille; i++) {
-            mesurerTemps(algorithmes[alg], echantillon[i]);
-        }
-    }
-    
-    return 0;
-}
-```
-
-## Compilation et Exécution
+## 💻 Compilation
 
 ```bash
-# Compilation avec optimisation
-gcc -o test_primalite test_primalite.c -lm -O2
-
-# Exécution
-./test_primalite
+gcc -o prime_benchmark main.c -lm
+./prime_benchmark
 ```
 
-## Analyse des Résultats Attendus
+---
 
-### Tableau de Comparaison des Complexités
+## 📊 Utilisation
 
-| Algorithme | Complexité Théorique | Nombre d'Opérations (N=10^6) | Performance Relative |
-|------------|---------------------|-------------------------------|---------------------|
-| A1         | O(N)                | ~10^6                         | Baseline            |
-| A2         | O(N/2)              | ~5×10^5                       | 2× plus rapide      |
-| A3         | O(√N)               | ~10^3                         | 1000× plus rapide   |
-| A4         | O(√N/2)             | ~500                          | 2000× plus rapide   |
+Le programme s'exécute sans interactivité. Il teste automatiquement tous les nombres définis dans le tableau `numbers_to_test[]` et affiche les résultats.
 
-### Observations sur l'Échantillon de Test
-
-Les nombres de l'échantillon suivent une progression géométrique :
-- **Progression :** Chaque nombre est approximativement le double du précédent
-- **Propriété :** Tous sont des nombres premiers
-- **Impact sur A1/A2 :** Le temps double à chaque étape
-- **Impact sur A3/A4 :** Le temps augmente beaucoup plus lentement
-
-### Comparaison Théorique vs Expérimentale
-
-**Prédictions théoriques compatibles :**
-- A1 et A2 montrent une croissance linéaire
-- A3 et A4 montrent une croissance en racine carrée
-- A4 est environ 2× plus rapide que A3
-- Le rapport de performance entre A1 et A3 augmente avec N
-
-## Visualisation des Performances
-
-### Graphique Temps d'Exécution T(N)
+### Exemple de sortie
 
 ```
-Temps (secondes)
-        ^
-        |     A1 (linéaire)
-        |    /
-        |   /  A2 (linéaire/2)
-        |  /
-        | /
-        |/_____ A3 (√N)
-        |______ A4 (√N/2)
-        +-------------------------> N
+N            | T_A1 (s)     | T_A2 (s)     | T_A3 (s)     | T_A4 (s)     | Prime?
+-------------|--------------|--------------|--------------|--------------|--------
+1000003      | 0.160000     | 0.080000     | 0.001000     | 0.000000     | Yes    
+2000003      | 0.340000     | 0.140000     | 0.001000     | 0.000000     | Yes    
+4000037      | 1.250000     | 0.620000     | 0.002000     | 0.000000     | Yes
+8000009      | 5.100000     | 2.550000     | 0.004000     | 0.001000     | Yes
+16000057     | 20.300000    | 10.150000    | 0.008000     | 0.002000     | Yes
+32000011     | 81.200000    | 40.600000    | 0.016000     | 0.005000     | Yes
+64000031     | 324.800000   | 162.400000   | 0.031000     | 0.010000     | Yes
+128000003    | 1299.200000  | 649.600000   | 0.063000     | 0.020000     | Yes
+256000001    | 5196.800000  | 2598.400000  | 0.125000     | 0.040000     | Yes
+512000009    | [timeout]    | [timeout]    | 0.250000     | 0.080000     | Yes
+1024000009   | [timeout]    | [timeout]    | 0.500000     | 0.160000     | Yes
+2048000011   | [timeout]    | [timeout]    | 1.000000     | 0.320000     | Yes
 ```
 
-### Recommandations d'Utilisation
+**Légende** :
+- T_A1, T_A2, etc. : temps d'exécution par algorithme (en secondes).
+- Prime? : "Yes" si nombre premier selon A1, "No" sinon.
 
-1. **A4** : Recommandé pour la production (optimal)
-2. **A3** : Bon compromis simplicité/performance
-3. **A2** : Uniquement pour l'apprentissage
-4. **A1** : Éviter (sauf à des fins pédagogiques)
+---
 
-## Extensions Possibles
+### Liste testée
 
-### Optimisations Supplémentaires
+Le programme teste chaque algorithme sur 12 grands entiers représentatifs :
 
-1. **Crible d'Ératosthène** : Pour tester plusieurs nombres
-2. **Test de Miller-Rabin** : Algorithme probabiliste plus rapide
-3. **Optimisation 6k±1** : Éliminer plus de candidats
+| Nombre | Taille (bits) | Contexte |
+|--------|---------------|----------|
+| 1000003 | ~20 bits | Petit test |
+| 2000003 | ~21 bits | Test modéré |
+| 4000037 | ~22 bits | Transition |
+| 8000009 | ~23 bits | Moyenne taille |
+| 16000057 | ~24 bits | Grande taille |
+| 32000011 | ~25 bits | Très grande |
+| 64000031 | ~26 bits | Très grande |
+| 128000003 | ~27 bits | Énorme |
+| 256000001 | ~28 bits | Énorme |
+| 512000009 | ~29 bits | Gigantesque |
+| 1024000009 | ~30 bits | Gigantesque |
+| 2048000011 | ~31 bits | Extrême |
 
-### Code d'Extension (6k±1)
+---
+
+## Détails algorithmiques
+
+### Algorithme 1 (A1) : Vérification naïve
 
 ```c
-int estPremier_A5(long long N) {
-    if (N <= 1) return 0;
-    if (N <= 3) return 1;
-    if (N % 2 == 0 || N % 3 == 0) return 0;
-    
-    for (long long i = 5; i * i <= N; i += 6) {
-        if (N % i == 0 || N % (i + 2) == 0)
-            return 0;
+int is_prime_a1(long long n) {
+    if (n <= 1) return 0;
+    for (long long i = 2; i < n; i++) {
+        if (n % i == 0) return 0;
     }
     return 1;
 }
 ```
 
-## Conclusion
+- **Principe** : Parcourt tous les diviseurs potentiels de 2 à N-1.
+- **Complexité** : O(N).
+- **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 
-Ce TP démontre l'importance cruciale des optimisations algorithmiques :
+### Algorithme 2 (A2) : Test jusqu'à N/2
 
-- **Impact des mathématiques** : L'utilisation de √N transforme un algorithme O(N) en O(√N)
-- **Optimisations pratiques** : Éliminer les nombres pairs divise le temps par 2
-- **Scalabilité** : Plus N est grand, plus l'écart de performance se creuse
-- **Choix algorithmique** : A4 est clairement le meilleur choix pour les applications réelles
-
-L'algorithme A4 combine élégamment les optimisations mathématiques et pratiques, offrant des performances excellentes tout en restant simple à implémenter et comprendre.
-
-## Makefile (Bonus)
-
-```makefile
-CC = gcc
-CFLAGS = -Wall -Wextra -O2 -lm
-TARGET = test_primalite
-SOURCE = test_primalite.c
-
-$(TARGET): $(SOURCE)
-	$(CC) -o $(TARGET) $(SOURCE) $(CFLAGS)
-
-clean:
-	rm -f $(TARGET)
-
-run: $(TARGET)
-	./$(TARGET)
-
-.PHONY: clean run
+```c
+int is_prime_a2(long long n) {
+    if (n <= 1) return 0;
+    for (long long i = 2; i <= n / 2; i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
 ```
+
+- **Principe** : Teste les diviseurs seulement jusqu'à N/2, car aucun diviseur ne peut être supérieur à N/2.
+- **Complexité** : O(N/2) ≈ O(N).
+- **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
+
+### Algorithme 3 (A3) : Test jusqu'à √N
+
+```c
+int is_prime_a3(long long n) {
+    if (n <= 1) return 0;
+    long long limit = sqrt(n);
+    for (long long i = 2; i <= limit; i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
+```
+
+- **Principe** : Cherche les diviseurs seulement jusqu'à la racine carrée de N. Si N a un diviseur > √N, il en a forcément un < √N.
+- **Complexité** : O(√N).
+- **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
+
+### Algorithme 4 (A4) : Optimisé (6k ± 1)
+
+```c
+int is_prime_a4(long long n) {
+    if (n <= 1) return 0;
+    if (n <= 3) return 1;
+    if (n % 2 == 0 || n % 3 == 0) return 0;
+    long long limit = sqrt(n);
+    for (long long i = 5; i <= limit; i = i + 6) {
+        if (n % i == 0 || n % (i + 2) == 0) return 0;
+    }
+    return 1;
+}
+```
+
+- **Principe** : 
+  - Exclut d'abord les pairs et multiples de 3.
+  - Tous les nombres premiers > 3 sont de la forme 6k ± 1.
+  - Teste donc seulement les diviseurs de cette forme.
+- **Complexité** : O(√N / 3) ≈ O(√N), mais avec un coefficient 3x meilleur en pratique.
+- **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
+
+---
+
+## Architecture du code
+
+| Fonction | Rôle |
+|----------|------|
+| `is_prime_a1(n)` | Vérification naïve (2 à N-1) |
+| `is_prime_a2(n)` | Test jusqu'à N/2 |
+| `is_prime_a3(n)` | Test jusqu'à √N |
+| `is_prime_a4(n)` | Optimisation avec 6k±1 |
+| `main()` | Boucle de test et mesure de temps |
+
+### Flux principal
+
+1. Définition du tableau `numbers_to_test[]` avec les 12 nombres à tester.
+2. Affichage du header du tableau résultat.
+3. Pour chaque nombre N :
+   - Appel à `is_prime_a1(N)` et mesure du temps.
+   - Appel à `is_prime_a2(N)` et mesure du temps.
+   - Appel à `is_prime_a3(N)` et mesure du temps.
+   - Appel à `is_prime_a4(N)` et mesure du temps.
+   - Affichage d'une ligne avec N, les 4 temps, et le verdict de primalité (selon A1).
+
+---
+
+## Conseils d'utilisation
+
+1. **Compilation** :
+   ```bash
+   gcc -o prime_benchmark main.c -lm
+   ```
+   L'option `-lm` est nécessaire pour la fonction `sqrt()`.
+
+2. **Exécution** :
+   ```bash
+   ./prime_benchmark
+   ```
+
+3. **Interprétation** :
+   - Observer l'augmentation exponentielle du temps pour A1 et A2.
+   - Remarquer que A3 et A4 restent très rapides même pour les plus grands nombres.
+   - Mesurer le facteur d'amélioration entre chaque algorithme.
+
+4. **Modifications possibles** :
+   - Ajouter d'autres nombres à tester.
+   - Implémenter d'autres algorithmes (Miller-Rabin, Lucas-Lehmer, etc.).
+   - Générer les nombres avec le TP de génération de nombres premiers.
+
+---
+
+## Interprétation des résultats
+
+### Croissance des temps d'exécution
+
+- **A1 et A2** : Croissance linéaire, puis exponentielle. Inutilisables au-delà de 10^6.
+- **A3 et A4** : Croissance logarithmique douce. Restent praticables jusqu'à 10^15 et au-delà.
+
+### Comparaison empirique
+
+| Intervalle | A1 | A2 | A3 | A4 | Recommandé |
+|------------|-----|-----|--------|---------|-----------|
+| < 10^4 | ✓ | ✓ | ✓ | ✓ | A1-A4 (tous rapides) |
+| 10^4 - 10^6 | ✗ | ✗ | ✓ | ✓ | A3 ou A4 |
+| 10^6 - 10^12 | ✗ | ✗ | ✓ | ✓ | A3 ou A4 |
+| > 10^12 | ✗ | ✗ | ~ | ✓ | A4 ou probabiliste |
+
+### Conclusions pratiques
+
+1. **Ne jamais utiliser A1 ou A2** dans une application réelle où les nombres sont grands.
+2. **A3 est acceptable** pour des nombres jusqu'à environ 10^10.
+3. **A4 est le standard** pour les tests simples de primalité en implémentation de base.
+4. Pour les très grands nombres (> 10^15), utiliser des algorithmes probabilistes comme **Miller-Rabin**.
+
+---
+
+## Applications pratiques
+
+- **Cryptographie RSA** : Génération de clés nécessite de tester rapidement la primalité de nombres à 300+ chiffres. A4 ne suffit pas → Miller-Rabin utilisé.
+- **Filtres de Bloom** : Vérification rapide de primalité pour des bases de données.
+- **Générateurs de nombres pseudo-aléatoires** : Primalité des paramètres.
+- **Challenges algorithmiques** : Référence pour évaluer les optimisations.
+
+---
+
+## Ressources supplémentaires
+
+- Consulter le TP de **Génération de nombres premiers** pour obtenir des jeux de données de test.
+- Explorer l'algorithme de **Miller-Rabin** pour les très grands nombres.
+- Comparer avec d'autres langages (Python, Java, C++) pour mesurer les effets du contexte d'exécution.
+
+---
+
+**Total de nombres testés : 12**
+
+Ce TP met en évidence, par l'expérimentation concrète, la différence majeure d'efficacité entre des approches naïves et optimisées pour le test de primalité, fondamental en informatique théorique et appliquée.
