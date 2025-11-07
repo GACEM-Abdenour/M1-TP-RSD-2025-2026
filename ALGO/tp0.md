@@ -1,3 +1,9 @@
+# TP N°0 : Génération des nombres premiers
+
+**Module :** Algorithmique Avancée et Complexité - Master 1 (IL & RSD)  
+**Université :** USTHB - Faculté d'Électronique et d'Informatique  
+**Année :** 2025-2026
+
 ## Description
 Ce programme en C permet de générer automatiquement des fichiers contenant des **nombres premiers** de différentes tailles et répartitions, utiles pour **tester et évaluer des algorithmes de primalité**. Il fournit plusieurs modes de génération pour créer des jeux de données personnalisés et reproductibles.
 
