@@ -1,5 +1,3 @@
-markdown_content = '''# Générateur de Jeux de Données - Test de Primalité
-
 ## Description
 Ce programme en C permet de générer automatiquement des fichiers contenant des **nombres premiers** de différentes tailles et répartitions, utiles pour **tester et évaluer des algorithmes de primalité**. Il fournit plusieurs modes de génération pour créer des jeux de données personnalisés et reproductibles.
 
