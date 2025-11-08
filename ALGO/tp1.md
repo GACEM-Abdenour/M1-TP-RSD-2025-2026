@@ -171,7 +171,7 @@ int is_prime_a3(long long n) {
 ```
 
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A3.png"/> 
-- **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
+- **Observations** :On peut observer que malgré le décalage par rapport au point de départ initial du graphique, l'évolution du temps d'exécution écoulé suit une progression linéaire similaire à la progression théorique O(n) attendue.
 - <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
 
 
