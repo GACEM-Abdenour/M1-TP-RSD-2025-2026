@@ -107,7 +107,7 @@ int is_prime_a1(long long n) {
 - **Complexité** : O(N).
 - **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 
-[chart:7]
+<img width="2400" height="1600" alt="a1" src="https://github.com/user-attachments/assets/556c86cd-675d-467e-83de-a46972861641" />
 
 ### Algorithme 2 (A2) : Test jusqu'à N/2
 
@@ -125,7 +125,7 @@ int is_prime_a2(long long n) {
 - **Complexité** : O(N/2) ≈ O(N).
 - **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
 
-[chart:8]
+<img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
 
 ### Algorithme 3 (A3) : Test jusqu'à √N
 
@@ -144,7 +144,8 @@ int is_prime_a3(long long n) {
 - **Complexité** : O(√N).
 - **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
 
-[chart:11]
+<img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
+
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
 
@@ -168,4 +169,5 @@ int is_prime_a4(long long n) {
 - **Complexité** : O(√N / 3) ≈ O(√N), mais avec un coefficient 3x meilleur en pratique.
 - **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
 
-[chart:12]
+<img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
+
