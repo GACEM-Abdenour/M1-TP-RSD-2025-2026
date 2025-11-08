@@ -48,18 +48,18 @@ Le programme s'exécute sans interactivité. Il teste automatiquement tous les n
 ```
 N            | T_A1 (s)     | T_A2 (s)     | T_A3 (s)     | T_A4 (s)     | Prime?
 -------------|--------------|--------------|--------------|--------------|--------
-1000003      | 0.160000     | 0.080000     | 0.001000     | 0.000000     | Yes    
-2000003      | 0.340000     | 0.140000     | 0.001000     | 0.000000     | Yes    
-4000037      | 1.250000     | 0.620000     | 0.002000     | 0.000000     | Yes
-8000009      | 5.100000     | 2.550000     | 0.004000     | 0.001000     | Yes
-16000057     | 20.300000    | 10.150000    | 0.008000     | 0.002000     | Yes
-32000011     | 81.200000    | 40.600000    | 0.016000     | 0.005000     | Yes
-64000031     | 324.800000   | 162.400000   | 0.031000     | 0.010000     | Yes
-128000003    | 1299.200000  | 649.600000   | 0.063000     | 0.020000     | Yes
-256000001    | 5196.800000  | 2598.400000  | 0.125000     | 0.040000     | Yes
-512000009    | [timeout]    | [timeout]    | 0.250000     | 0.080000     | Yes
-1024000009   | [timeout]    | [timeout]    | 0.500000     | 0.160000     | Yes
-2048000011   | [timeout]    | [timeout]    | 1.000000     | 0.320000     | Yes
+1000003      | 0.002288     | 0.000695     | 0.000004     | 0.000001     | Yes    
+2000003      | 0.002768     | 0.001396     | 0.000002     | 0.000001     | Yes    
+4000037      | 0.005613     | 0.002825     | 0.000003     | 0.000001     | Yes    
+8000009      | 0.011118     | 0.005549     | 0.000005     | 0.000002     | Yes    
+16000057     | 0.022654     | 0.011797     | 0.000006     | 0.000002     | Yes    
+32000011     | 0.044510     | 0.022150     | 0.000008     | 0.000003     | Yes    
+64000031     | 0.088886     | 0.043949     | 0.000012     | 0.000004     | Yes    
+128000003    | 0.177057     | 0.088214     | 0.000016     | 0.000006     | Yes    
+256000001    | 0.353173     | 0.176134     | 0.000022     | 0.000008     | Yes    
+512000009    | 0.716674     | 0.359405     | 0.000033     | 0.000011     | Yes    
+1024000009   | 1.432980     | 0.724569     | 0.000047     | 0.000016     | Yes    
+2048000011   | 2.870783     | 1.440214     | 0.000065     | 0.000022     | Yes    
 ```
 
 **Légende** :
@@ -107,6 +107,8 @@ int is_prime_a1(long long n) {
 - **Complexité** : O(N).
 - **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 
+[chart:7]
+
 ### Algorithme 2 (A2) : Test jusqu'à N/2
 
 ```c
@@ -122,6 +124,8 @@ int is_prime_a2(long long n) {
 - **Principe** : Teste les diviseurs seulement jusqu'à N/2, car aucun diviseur ne peut être supérieur à N/2.
 - **Complexité** : O(N/2) ≈ O(N).
 - **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
+
+[chart:8]
 
 ### Algorithme 3 (A3) : Test jusqu'à √N
 
@@ -139,6 +143,8 @@ int is_prime_a3(long long n) {
 - **Principe** : Cherche les diviseurs seulement jusqu'à la racine carrée de N. Si N a un diviseur > √N, il en a forcément un < √N.
 - **Complexité** : O(√N).
 - **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
+
+[chart:11]
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
 
@@ -162,4 +168,4 @@ int is_prime_a4(long long n) {
 - **Complexité** : O(√N / 3) ≈ O(√N), mais avec un coefficient 3x meilleur en pratique.
 - **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
 
----
+[chart:12]
