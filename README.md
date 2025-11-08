@@ -211,9 +211,9 @@ int is_prime_a4(long long n) {
 
 ---
 ### Roles et Contributions:
-- **Code et development**:GACEM Abdenour
-- **Rédaction du rapport**:DALIL Faycal
-- **Tests et evaluations**:
-- **Data collection**:
+- **Code et development**:GACEM  Abdenour 222231640608
+- **Rédaction du rapport**:DALIL Faycal 222231658510
+- **Tests et evaluations**: ABDERRAHIM sidali 222231402319
+- **Data collection**: BELDJERDI TAYEB YASSER 222231404112
 
 
