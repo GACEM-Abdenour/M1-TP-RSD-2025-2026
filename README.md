@@ -212,7 +212,7 @@ int is_prime_a4(long long n) {
 ---
 ### Roles et Contributions:
 - **Code et development**:GACEM Abdenour
-- **Rédaction du rapport**:DALIL FaYCAL
+- **Rédaction du rapport**:DALIL Faycal
 - **Tests et evaluations**:
 - **Data collection**:
 
