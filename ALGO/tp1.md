@@ -144,7 +144,7 @@ int is_prime_a2(long long n) {
 
 
 - <img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
-- **Observations** :
+- **Observations** : On peut observer que l'évolution du temps d'exécution et des données d'entrée est très similaire à l'évolution théorique attendue.
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A2.png"/> 
 - **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
 
