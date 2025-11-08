@@ -92,6 +92,17 @@ Le programme teste chaque algorithme sur 12 grands entiers représentatifs :
 ## Détails algorithmiques
 
 ### Algorithme 1 (A1) : Vérification naïve
+- **Principe** : Parcourt tous les diviseurs potentiels de 2 à N-1.
+#### Nombre d’itérations (pire cas)
+- Pire cas : N est premier
+- Boucle pour i = 2 → N-1 → **N-2 itérations**
+
+#### Coût total (chaque instruction = 1 unité)
+- Comparaison, incrément, modulo ≈ 3(N-2) unités
+- **Complexité finale : O(N)**
+
+
+
 
 ```c
 int is_prime_a1(long long n) {
@@ -103,13 +114,21 @@ int is_prime_a1(long long n) {
 }
 ```
 
-- **Principe** : Parcourt tous les diviseurs potentiels de 2 à N-1.
-- **Complexité** : O(N).
+- **Graphe**:
+- <img width="2400" height="1600" alt="a1" src="https://github.com/user-attachments/assets/556c86cd-675d-467e-83de-a46972861641" />
 - **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 
-<img width="2400" height="1600" alt="a1" src="https://github.com/user-attachments/assets/556c86cd-675d-467e-83de-a46972861641" />
+
 
 ### Algorithme 2 (A2) : Test jusqu'à N/2
+- **Principe** : Teste les diviseurs seulement jusqu'à N/2, car aucun diviseur ne peut être supérieur à N/2.
+#### Nombre d’itérations (pire cas)
+- Pire cas : N est premier
+- Boucle pour i = 2 → N/2 → **N/2 -1 itérations**
+#### Coût total (chaque instruction = 1 unité)
+- Comparaison, incrément, modulo ≈ 3(N/2 -1) unités
+- **Complexité finale : O(N)**
+
 
 ```c
 int is_prime_a2(long long n) {
@@ -121,13 +140,21 @@ int is_prime_a2(long long n) {
 }
 ```
 
-- **Principe** : Teste les diviseurs seulement jusqu'à N/2, car aucun diviseur ne peut être supérieur à N/2.
-- **Complexité** : O(N/2) ≈ O(N).
+
+
+- <img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
 - **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
 
-<img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
-
 ### Algorithme 3 (A3) : Test jusqu'à √N
+- **Principe** : Cherche les diviseurs seulement jusqu'à la racine carrée de N.
+#### Nombre d’itérations (pire cas)
+- Pire cas : N est premier
+- Boucle pour i = 2 → √N → **√N -1 itérations**
+#### Coût total (chaque instruction = 1 unité)
+- Comparaison, incrément, modulo ≈ 3(√N -1) unités
+- **Complexité finale : O(√N)**
+
+
 
 ```c
 int is_prime_a3(long long n) {
@@ -140,15 +167,24 @@ int is_prime_a3(long long n) {
 }
 ```
 
-- **Principe** : Cherche les diviseurs seulement jusqu'à la racine carrée de N. Si N a un diviseur > √N, il en a forcément un < √N.
-- **Complexité** : O(√N).
+- <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
 - **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
 
-<img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
 
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
+- **Principe** :
+  - Exclut d'abord les pairs et multiples de 3.
+  - Tous les nombres premiers > 3 sont de la forme 6k ± 1.
+  - Teste donc seulement les diviseurs de cette forme.
 
+#### Nombre d’itérations (pire cas)
+- Pire cas : N est premier
+- Boucle pour i = 5 → √N, step 6 → **√N / 3 itérations**
+
+#### Coût total (chaque instruction = 1 unité)
+- Comparaison, incrément, modulo ≈ 2 * (√N /3) unités
+- **Complexité finale : O(√N / 3) ≈ O(√N)**, mais avec un coefficient 3x meilleur en pratique.
 ```c
 int is_prime_a4(long long n) {
     if (n <= 1) return 0;
@@ -162,12 +198,8 @@ int is_prime_a4(long long n) {
 }
 ```
 
-- **Principe** : 
-  - Exclut d'abord les pairs et multiples de 3.
-  - Tous les nombres premiers > 3 sont de la forme 6k ± 1.
-  - Teste donc seulement les diviseurs de cette forme.
-- **Complexité** : O(√N / 3) ≈ O(√N), mais avec un coefficient 3x meilleur en pratique.
+
+- <img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
 - **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
 
-<img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
 
