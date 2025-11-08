@@ -172,7 +172,7 @@ int is_prime_a3(long long n) {
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A3.png"/> 
 - **Observations** :On peut observer que malgré le décalage par rapport au point de départ initial du graphique, l'évolution du temps d'exécution écoulé suit une progression linéaire similaire à la progression théorique O(n) attendue.
 - <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
-- **Observations** :
+- **Observations** :On constate une différence de performance significative entre A3 et les algorithmes A1 et A2, ce qui indique que A3 est la fonction la plus performante en termes de temps d'exécution, aussi bien pour les grandes que pour les petites valeurs.
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
 - **Principe** :
