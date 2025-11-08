@@ -7,6 +7,25 @@
 
 ---
 
+## Table des matières
+
+- [Description](#description)
+- [Fonctionnalités](#fonctionnalités)
+  - [Algorithmes testés](#algorithmes-testés)
+  - [Mesure des performances](#mesure-des-performances)
+- [💻 Compilation](#-compilation)
+- [📊 Utilisation](#-utilisation)
+  - [Exemple de sortie](#exemple-de-sortie)
+  - [Liste testée](#liste-testée)
+- [Détails algorithmiques](#détails-algorithmiques)
+  - [Algorithme 1 (A1) : Vérification naïve](#algorithme-1-a1--vérification-naïve)
+  - [Algorithme 2 (A2) : Test jusqu'à N/2](#algorithme-2-a2--test-jusquà-n2)
+  - [Algorithme 3 (A3) : Test jusqu'à √N](#algorithme-3-a3--test-jusquà-n)
+  - [Algorithme 4 (A4) : Optimisé (6k ± 1)](#algorithme-4-a4--optimisé-6k--1)
+- [Roles et Contributions](#roles-et-contributions)
+
+---
+
 ## Description
 
 Ce programme en C évalue et compare les performances de **quatre algorithmes de test de primalité** sur une liste de grands entiers. Il mesure le **temps d'exécution** de chaque méthode et affiche les résultats sous forme de tableau. Cette analyse empirique permet d'illustrer les effets de l'optimisation algorithmique sur le problème classique de la détection des nombres premiers.
