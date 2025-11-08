@@ -115,9 +115,9 @@ int is_prime_a1(long long n) {
 ```
 
 - **Graphe**:
-- <img width="2400" height="1600" alt="a1" src="https://github.com/user-attachments/assets/556c86cd-675d-467e-83de-a46972861641" />
-- **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A1.png"/> 
+- **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
+- - <img width="2400" height="1600" alt="a1" src="https://github.com/user-attachments/assets/556c86cd-675d-467e-83de-a46972861641" />
 - **Observations** : Très inefficace pour les grands nombres. Utilisable seulement pour des tests jusqu'à environ 10,000.
 
 
@@ -168,10 +168,10 @@ int is_prime_a3(long long n) {
     return 1;
 }
 ```
-- <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
+
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A3.png"/> 
 - **Observations** : Amélioration drastique. Utilisable jusqu'à environ 10^12 avec des temps acceptables.
-
+- <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
 
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
@@ -200,13 +200,13 @@ int is_prime_a4(long long n) {
 }
 ```
 
-- <img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
 
 
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A4.png"/>
 
 
 - **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
+- <img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
 
 ---
 ### Roles et Contributions:
