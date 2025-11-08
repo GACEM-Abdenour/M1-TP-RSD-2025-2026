@@ -172,7 +172,7 @@ int is_prime_a3(long long n) {
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A3.png"/> 
 - **Observations** :On peut observer que malgré le décalage par rapport au point de départ initial du graphique, l'évolution du temps d'exécution écoulé suit une progression linéaire similaire à la progression théorique O(n) attendue.
 - <img width="2400" height="1600" alt="a3" src="https://github.com/user-attachments/assets/11df2459-492c-485a-b5eb-577292f57b5a" />
-
+- **Observations** :
 
 ### Algorithme 4 (A4) : Optimisé (6k ± 1)
 - **Principe** :
@@ -203,10 +203,10 @@ int is_prime_a4(long long n) {
 
 
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A4.png"/>
-
-
-- **Observations** : Approche la plus efficace parmi ces quatre. Adaptée aux applications réelles et cryptographie.
+- **Observations** :On constate que l'évolution du temps d'exécution écoulé par rapport aux tests réels suit une progression en racine carrée, avec quelques anomalies statistiques au début.
 - <img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
+- **Observations** :On constate que l'évolution du temps d'exécution écoulé par rapport aux tests réels suit une progression en racine carrée, avec quelques anomalies statistiques au début.
+- **Conclusion** :
 
 ---
 ### Roles et Contributions:
