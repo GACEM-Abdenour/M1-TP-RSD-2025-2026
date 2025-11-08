@@ -145,7 +145,7 @@ int is_prime_a2(long long n) {
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A2.png"/> 
 - **Observations** :nous constatons une évolution linéaire presque identique (1 pour 1) du temps d'exécution écoulé par rapport à l'évolution théorique attendue O(n).
 - <img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
-- **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
+- **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.faire de A2 le meilleur algorithme
 
 ### Algorithme 3 (A3) : Test jusqu'à √N
 - **Principe** : Cherche les diviseurs seulement jusqu'à la racine carrée de N.
@@ -205,8 +205,8 @@ int is_prime_a4(long long n) {
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A4.png"/>
 - **Observations** :On constate que l'évolution du temps d'exécution écoulé par rapport aux tests réels suit une progression en racine carrée, avec quelques anomalies statistiques au début.
 - <img width="2400" height="1600" alt="a4" src="https://github.com/user-attachments/assets/a703739c-0150-47ca-a94f-a1511b2d8de3" />
-- **Observations** :On constate que l'évolution du temps d'exécution écoulé par rapport aux tests réels suit une progression en racine carrée, avec quelques anomalies statistiques au début.
-- **Conclusion** :
+- **Observations** On observe une légère amélioration entre A3 et A4, mais A4 reste nettement plus performant que A1 et A2, ce qui en fait l'algorithme le plus performant des quatre.
+- **Conclusion** :L'algorithme 4, bien qu'il suive une courbe de racine carrée similaire, surpasse l'algorithme 3 en pratique.
 
 ---
 ### Roles et Contributions:
