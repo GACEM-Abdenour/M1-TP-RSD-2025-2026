@@ -144,7 +144,7 @@ int is_prime_a2(long long n) {
 
 
 - <img width="2400" height="1600" alt="a2" src="https://github.com/user-attachments/assets/1941e489-49aa-49b2-b4fa-4612b08ae41f" />
-- **Observations** : On peut observer que malgré le décalage par rapport au point de départ initial du graphique, l'évolution du temps d'exécution écoulé suit une progression linéaire similaire à la progression théorique O(n) attendue.
+- **Observations** :nous constatons une évolution linéaire presque identique (1 pour 1) du temps d'exécution écoulé par rapport à l'évolution théorique attendue O(n).
 - <img width="2400" height="1600" alt="a1" src="https://github.com/HumbleFriedToast/docs/blob/main/table_plot_A2.png"/> 
 - **Observations** : Amélioration mineure (environ 2x plus rapide). Toujours impraticable pour les grands nombres.
 
