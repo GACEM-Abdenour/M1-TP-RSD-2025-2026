@@ -1,8 +1,28 @@
+# M1-TP-RSD-2025-2026
 # TP N°1 : Comparaison d'algorithmes de détermination de primalité
 
 **Module** : Algorithmique Avancée et Complexité - Master 1 (IL & RSD)  
 **Université** : USTHB - Faculté d'Électronique et d'Informatique  
 **Année** : 2025-2026  
+
+---
+
+## Table des matières
+
+- [Description](#description)
+- [Fonctionnalités](#fonctionnalités)
+  - [Algorithmes testés](#algorithmes-testés)
+  - [Mesure des performances](#mesure-des-performances)
+- [💻 Compilation](#-compilation)
+- [📊 Utilisation](#-utilisation)
+  - [Exemple de sortie](#exemple-de-sortie)
+  - [Liste testée](#liste-testée)
+- [Détails algorithmiques](#détails-algorithmiques)
+  - [Algorithme 1 (A1) : Vérification naïve](#algorithme-1-a1--vérification-naïve)
+  - [Algorithme 2 (A2) : Test jusqu'à N/2](#algorithme-2-a2--test-jusquà-n2)
+  - [Algorithme 3 (A3) : Test jusqu'à √N](#algorithme-3-a3--test-jusquà-n)
+  - [Algorithme 4 (A4) : Optimisé (6k ± 1)](#algorithme-4-a4--optimisé-6k--1)
+- [Roles et Contributions](#roles-et-contributions)
 
 ---
 
@@ -210,9 +230,9 @@ int is_prime_a4(long long n) {
 
 ---
 ### Roles et Contributions:
-- **Code et development**:GACEM Abdenour
-- **Rédaction du rapport**:DALIL FaYCAL
-- **Tests et evaluations**:
-- **Data collection**:
+- **Code et development**:GACEM  Abdenour 222231640608
+- **Rédaction du rapport**:DALIL Faycal 222231658510
+- **Tests et evaluations**: ABDERRAHIM sidali 222231402319
+- **Data collection**: BELDJERDI TAYEB YASSER 222231404112
 
 
