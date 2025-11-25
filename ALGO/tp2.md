@@ -329,9 +329,11 @@ void MaxEtMinB(int *arr, int n, int *out_min, int *out_max, long *comp_count) {
 
 ---
 
-### Fonctions utilitaires
+## Fonctions utilitaires
 
 #### Mesure du temps
+
+Convertit les cycles processeur écoulés en secondes à l'aide de `CLOCKS_PER_SEC`.
 
 ```c
 double get_time(clock_t start, clock_t end) {
@@ -340,6 +342,8 @@ double get_time(clock_t start, clock_t end) {
 ```
 
 #### Mesure du temps moyen d'un algorithme de recherche
+
+Exécute un algorithme de recherche plusieurs fois (`reps` répétitions) et retourne la moyenne des temps écoulés pour améliorer la précision et réduire les anomalies statistiques.
 
 ```c
 double mesurer_temps(bool (*search)(int*, int, int), int* arr, int n, int value, int reps) {
@@ -357,15 +361,12 @@ double mesurer_temps(bool (*search)(int*, int, int), int* arr, int n, int value,
 
 #### Génération des fichiers de données
 
+Crée deux fichiers : un tableau trié (`elements_tries.txt`) et le même tableau mélangé (`elements_non_tries.txt`). Les éléments sont générés sous la forme `i * 2` pour assurer des valeurs distinctes et facilement identifiables.
+
 ```c
 void generer_fichiers(int n) {
     FILE *fichier_trie = fopen("elements_tries.txt", "w");
     FILE *fichier_non_trie = fopen("elements_non_tries.txt", "w");
-    
-    if (fichier_trie == NULL || fichier_non_trie == NULL) {
-        printf("Erreur lors de l'ouverture des fichiers\n");
-        return;
-    }
     
     int* arr = malloc(n * sizeof(int));
     for (int i = 0; i < n; i++) {
@@ -393,12 +394,12 @@ void generer_fichiers(int n) {
     fclose(fichier_trie);
     fclose(fichier_non_trie);
     free(arr);
-    
-    printf("Fichiers générés avec succès pour %d éléments\n", n);
 }
 ```
 
 #### Structure TableauInfo
+
+Encapsule un tableau d'entiers avec sa taille et un indicateur booléen précisant si le tableau est trié ou non. Permet une gestion unifiée des 44 tableaux générés.
 
 ```c
 typedef struct {
@@ -410,6 +411,8 @@ typedef struct {
 
 #### Lecture des fichiers et création des tableaux
 
+Lit les deux fichiers de données et construit 44 structures `TableauInfo` en mémoire (22 triés + 22 non triés), chacun correspondant à une taille différente de la liste de test.
+
 ```c
 TableauInfo* creer_tableaux_depuis_fichiers() {
     int sizes[] = {
@@ -418,17 +421,10 @@ TableauInfo* creer_tableaux_depuis_fichiers() {
         1800000, 2000000, 4000000, 6000000, 8000000
     };
     int num_sizes = 22;
-    
     TableauInfo* tableaux = malloc(44 * sizeof(TableauInfo));
     
     FILE *fichier_trie = fopen("elements_tries.txt", "r");
     FILE *fichier_non_trie = fopen("elements_non_tries.txt", "r");
-    
-    if (fichier_trie == NULL || fichier_non_trie == NULL) {
-        printf("Erreur : Les fichiers n'existent pas.\n");
-        free(tableaux);
-        return NULL;
-    }
     
     int n_trie, n_non_trie;
     fscanf(fichier_trie, "%d", &n_trie);
@@ -449,7 +445,6 @@ TableauInfo* creer_tableaux_depuis_fichiers() {
     
     for (int i = 0; i < num_sizes; i++) {
         int taille = (sizes[i] <= n_trie) ? sizes[i] : n_trie;
-        
         tableaux[i * 2].tableau = malloc(taille * sizeof(int));
         tableaux[i * 2].taille = taille;
         tableaux[i * 2].est_trie = true;
@@ -467,12 +462,13 @@ TableauInfo* creer_tableaux_depuis_fichiers() {
     
     free(elements_tries);
     free(elements_non_tries);
-    
     return tableaux;
 }
 ```
 
 #### Libération mémoire
+
+Libère tous les tableaux alloués par `creer_tableaux_depuis_fichiers()` en parcourant les 44 entrées et en libérant chaque allocation.
 
 ```c
 void liberer_tableaux(TableauInfo* tableaux) {
@@ -486,6 +482,8 @@ void liberer_tableaux(TableauInfo* tableaux) {
 
 #### Exécution des benchmarks
 
+Boucle sur toutes les tailles de test, sélectionne les tableaux triés et non triés correspondants, puis mesure les temps d'exécution pour chaque algorithme (naïf, séquentiel, dichotomie) en meilleur et pire cas. Affiche les résultats dans un tableau formaté prêt pour export Excel.
+
 ```c
 void run_benchmarks(TableauInfo* tableaux) {
     if (tableaux == NULL) return;
@@ -494,15 +492,13 @@ void run_benchmarks(TableauInfo* tableaux) {
         1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000,
         1800000, 2000000, 4000000, 6000000, 8000000
     };
-    int num_sizes = 22;
-    int reps = 5;
+    int num_sizes = 22, reps = 5;
     
-    printf("\nN          | EletsNonTries+ (s)   | EletsNonTries- (s)   | ...\n");
-    printf("-----------|----------------------|----------------------|...\n");
+    printf("\nN          | EletsNonTries+ (s)   | EletsNonTries- (s)   | EletsTries+ (s)      | EletsTries- (s)      | EletsTriesDicho+ (s) | EletsTriesDicho- (s)\n");
+    printf("-----------|----------------------|----------------------|----------------------|----------------------|----------------------|----------------------\n");
     
     for (int i = 0; i < num_sizes; i++) {
-        int idx_sorted = i * 2;
-        int idx_non_sorted = i * 2 + 1;
+        int idx_sorted = i * 2, idx_non_sorted = i * 2 + 1;
         TableauInfo sorted = tableaux[idx_sorted];
         TableauInfo nonsorted = tableaux[idx_non_sorted];
         int n = sorted.taille;
@@ -511,25 +507,14 @@ void run_benchmarks(TableauInfo* tableaux) {
         int val_best_trie = sorted.tableau[0];
         int val_best_dicho = sorted.tableau[n/2];
         int val_absent = -1;
-        int val_last_non = nonsorted.tableau[n - 1];
-        int val_last_trie = sorted.tableau[n - 1];
-        int val_last_dicho = sorted.tableau[n - 1];
         
         double t_non_plus = mesurer_temps(naive, nonsorted.tableau, n, val_best_non, reps);
         double t_trie_seq_plus = mesurer_temps(seq_trie, sorted.tableau, n, val_best_trie, reps);
         double t_trie_dicho_plus = mesurer_temps(dicho, sorted.tableau, n, val_best_dicho, reps);
         
-        double t_non_present_last = mesurer_temps(naive, nonsorted.tableau, n, val_last_non, reps);
-        double t_non_absent = mesurer_temps(naive, nonsorted.tableau, n, val_absent, reps);
-        double t_non_minus = (t_non_present_last > t_non_absent) ? t_non_present_last : t_non_absent;
-        
-        double t_trie_seq_present_last = mesurer_temps(seq_trie, sorted.tableau, n, val_last_trie, reps);
-        double t_trie_seq_absent = mesurer_temps(seq_trie, sorted.tableau, n, val_absent, reps);
-        double t_trie_seq_minus = (t_trie_seq_present_last > t_trie_seq_absent) ? t_trie_seq_present_last : t_trie_seq_absent;
-        
-        double t_trie_dicho_present_last = mesurer_temps(dicho, sorted.tableau, n, val_last_dicho, reps);
-        double t_trie_dicho_absent = mesurer_temps(dicho, sorted.tableau, n, val_absent, reps);
-        double t_trie_dicho_minus = (t_trie_dicho_present_last > t_trie_dicho_absent) ? t_trie_dicho_present_last : t_trie_dicho_absent;
+        double t_non_minus = mesurer_temps(naive, nonsorted.tableau, n, val_absent, reps);
+        double t_trie_seq_minus = mesurer_temps(seq_trie, sorted.tableau, n, val_absent, reps);
+        double t_trie_dicho_minus = mesurer_temps(dicho, sorted.tableau, n, val_absent, reps);
         
         printf("%-11d | %-20.6f | %-20.6f | %-20.6f | %-20.6f | %-20.6f | %-20.6f\n",
                sizes[i], t_non_plus, t_non_minus, t_trie_seq_plus, t_trie_seq_minus,
@@ -539,6 +524,11 @@ void run_benchmarks(TableauInfo* tableaux) {
 ```
 
 #### Fonction principale (main)
+
+Gère une boucle interactive proposant un menu permettant à l'utilisateur de :
+1. Générer les fichiers de données (8 000 000 éléments)
+2. Créer les tableaux en mémoire et exécuter tous les benchmarks
+3. Quitter le programme
 
 ```c
 int main() {
@@ -550,35 +540,25 @@ int main() {
         printf("2) Créer les tableaux depuis les fichiers et exécuter les algorithmes (benchmarks)\n");
         printf("3) Quitter\n");
         printf("Choix: ");
+        
         if (scanf("%d", &choice) != 1) {
             int c;
             while ((c = getchar()) != '\n' && c != EOF) {}
-            printf("Choix invalide\n");
             continue;
         }
         
         if (choice == 1) {
-            printf("Génération des fichiers...\n");
             generer_fichiers(8000000);
         } else if (choice == 2) {
             if (tableaux != NULL) {
                 liberer_tableaux(tableaux);
-                tableaux = NULL;
             }
-            printf("Création des tableaux depuis les fichiers...\n");
             tableaux = creer_tableaux_depuis_fichiers();
-            if (tableaux == NULL) {
-                printf("Échec de création des tableaux.\n");
-                continue;
+            if (tableaux != NULL) {
+                run_benchmarks(tableaux);
             }
-            printf("Exécution des benchmarks...\n");
-            run_benchmarks(tableaux);
-            printf("\nBenchmarks terminés.\n");
         } else if (choice == 3) {
-            printf("Sortie.\n");
             break;
-        } else {
-            printf("Choix inconnu\n");
         }
     }
     
