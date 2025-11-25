@@ -8,62 +8,59 @@
 
 **Machine utilisée pour les tests :**
 
-- Processeur : 13th Gen Intel(R) Core(TM) i5-13420H @ 2.10 GHz  
-- RAM installée : 8.00 GB (7.70 GB utilisable)  
-- Type de système : 64-bit, processeur x64  
+* **Processeur** : 13th Gen Intel(R) Core(TM) i5-13420H @ 2.10 GHz
+* **RAM installée** : 8.00 GB (7.70 GB utilisable)
+* **Type de système** : 64-bit, processeur x64
 
 ---
 
 ## Table des matières
 
-1. [Description](#description)  
-2. [Fonctionnalités](#fonctionnalités)  
-3. [Liste testée](#liste-testée)  
-4. [Compilation et exécution](#compilation-et-exécution)  
-5. [Mesure des performances](#mesure-des-performances)  
-6. [Exemples de données](#exemples-de-données)  
-7. [Graphiques](#graphiques)  
-8. [Détails algorithmiques](#détails-algorithmiques)  
-9. [Rôles et contributions](#rôles-et-contributions)  
-10. [Fonctions C utilisées](#fonctions-c-utilisées)  
-11. [Lien entre fonctions et tâches](#lien-entre-fonctions-et-tâches)  
+1. [Description](#description)
+2. [Fonctionnalités](#fonctionnalités)
+3. [Liste testée](#liste-testée)
+4. [Compilation et exécution](#compilation-et-exécution)
+5. [Mesure des performances](#mesure-des-performances)
+6. [Exemples de données](#exemples-de-données)
+7. [Graphiques](#graphiques)
+8. [Détails algorithmiques](#détails-algorithmiques)
+9. [Rôles et contributions](#rôles-et-contributions)
 
 ---
 
 ## Description
 
-Ce TP a pour objectif d'analyser et de comparer plusieurs algorithmes de recherche et de détermination du minimum et du maximum dans des tableaux d'entiers :
+Ce TP a pour objectif d'analyser et de comparer plusieurs algorithmes de recherche et determiner minimum et maximum dans des tableaux d'entiers :
 
-- Recherche non triée (Naïf)  
-- Recherche triée  
-- Recherche dichotomique  
-- Algorithmes MaxEtMinA et MaxEtMinB  
+* **Recherche non triée (Naïf)**
+* **Recherche triée**
+* **Recherche dichotomique**
+* **Algorithmes MaxEtMinA et MaxEtMinB**
 
-Les tests ont été réalisés pour différentes tailles de tableaux, en mesurant le temps d’exécution et le nombre de comparaisons. Les données ont été générées par le programme et stockées dans des fichiers texte, puis lues dans des tables pour analyse.
+Les tests ont été réalisés pour différentes tailles de tableaux, en mesurant **le temps d'exécution** et **le nombre de comparaisons**. Les données ont été **générées par le programme et stockées dans des fichiers texte**, puis lues dans des tables pour analyse. L'objectif est de visualiser l'impact de l'organisation des données et l'efficacité des optimisations algorithmiques.
 
 ---
 
 ## Fonctionnalités
 
-- Parcours complet des tableaux pour les recherches naïves.  
-- Exploitation de l’ordre pour les recherches triées.  
-- Division récursive / itérative de l’intervalle pour les recherches dichotomiques.  
-- Comparaison de deux stratégies de calcul du max et min (A et B).  
-- Collecte et stockage des temps et comparaisons dans des fichiers : `tp2pt1.txt` et `tp2pt2.txt`.  
-- Graphiques réalisés à partir de ces fichiers en utilisant Excel.  
+* Parcours complet des tableaux pour les recherches naïves.
+* Exploitation de l'ordre pour les recherches triées.
+* Division récursive pour les recherches dichotomiques.
+* Comparaison de deux stratégies de calcul du max et min (A et B).
+* Collecte et stockage des **temps et comparaisons** dans des fichiers : `tp2pt1.txt` et `tp2pt2.txt`.
+* Graphiques réalisés à partir de ces fichiers en utilisant **Excel**.
 
 ---
 
 ## Liste testée
 
-Tailles de tableaux utilisées :
+**Tailles de tableaux utilisées :**
 
-int sizes[] = {
-100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
-1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000,
-1800000, 2000000, 4000000, 6000000, 8000000
-};
-
+```c
+int sizes[] = {100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
+               1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000,
+               1800000, 2000000, 4000000, 6000000, 8000000};
+```
 
 ---
 
@@ -71,42 +68,37 @@ int sizes[] = {
 
 Pour compiler le programme sous Linux :
 
-```
-gcc -o tp2 tp2.c
-
+```bash
+gcc -o tp2 tp2.c 
 ./tp2
 ```
-
-
-
-Le programme propose alors un menu interactif pour générer les fichiers de données et lancer les benchmarks.
 
 ---
 
 ## Mesure des performances
 
-- Temps : en secondes, mesuré à l’aide de `clock()` et converti en secondes via `CLOCKS_PER_SEC`.  
-- Comparaisons : nombre de comparaisons réalisées par l’algorithme (théorique et observé).  
-- Résultats stockés dans des fichiers et importés dans Excel pour génération de tableaux et graphiques.  
+* **Temps** : en secondes (avec `clock()` ou chronomètre haute précision).
+* **Comparaisons** : nombre de comparaisons réalisées par l'algorithme.
+* Résultats **stockés dans des fichiers** et importés dans **Excel** pour génération des tableaux et graphiques.
 
 ---
 
 ## Exemples de données
 
-### TP2 Partie 1 : Non-Trié / Trié / Dichotomie (best et worst cases)
+### TP2 Partie 1 :  Non-Trié / Trié / Dichotomie (best et worst cases)
 
-| N       | Non-Trié + (s) | Non-Trié − (s) | Trié + (s) | Trié − (s) | Dicho + (s) | Dicho − (s) |
-| ------- | -------------- | -------------- | ---------- | ---------- | ----------- | ----------- |
-| 100000  | 0.000000       | 0.000174       | 0.000000   | 0.000187   | 0.000001    | 0.000001    |
-| 200000  | 0.000000       | 0.000230       | 0.000000   | 0.000414   | 0.000001    | 0.000001    |
-| 400000  | 0.000000       | 0.000518       | 0.000000   | 0.000961   | 0.000001    | 0.000000    |
-| 600000  | 0.000001       | 0.000739       | 0.000000   | 0.001251   | 0.000001    | 0.000001    |
-| 800000  | 0.000000       | 0.001434       | 0.000000   | 0.002169   | 0.000000    | 0.000001    |
-| 1000000 | 0.000001       | 0.002234       | 0.000001   | 0.002718   | 0.000001    | 0.000001    |
-| 2000000 | 0.000001       | 0.002827       | 0.000001   | 0.004550   | 0.000001    | 0.000001    |
-| 4000000 | 0.000001       | 0.005915       | 0.000000   | 0.007500   | 0.000001    | 0.000001    |
-| 6000000 | 0.000000       | 0.009176       | 0.000000   | 0.010153   | 0.000001    | 0.000001    |
-| 8000000 | 0.000000       | 0.011319       | 0.000000   | 0.014508   | 0.000001    | 0.000001    |
+| N       |  Non-Trié + (s) |  Non-Trié − (s) | Trié + (s) | Trié − (s) | Dicho + (s) | Dicho − (s) |
+| ------- | --------------- | --------------- | ---------- | ---------- | ----------- | ----------- |
+| 100000  | 0.000000        | 0.000174        | 0.000000   | 0.000187   | 0.000001    | 0.000001    |
+| 200000  | 0.000000        | 0.000230        | 0.000000   | 0.000414   | 0.000001    | 0.000001    |
+| 400000  | 0.000000        | 0.000518        | 0.000000   | 0.000961   | 0.000001    | 0.000000    |
+| 600000  | 0.000001        | 0.000739        | 0.000000   | 0.001251   | 0.000001    | 0.000001    |
+| 800000  | 0.000000        | 0.001434        | 0.000000   | 0.002169   | 0.000000    | 0.000001    |
+| 1000000 | 0.000001        | 0.002234        | 0.000001   | 0.002718   | 0.000001    | 0.000001    |
+| 2000000 | 0.000001        | 0.002827        | 0.000001   | 0.004550   | 0.000001    | 0.000001    |
+| 4000000 | 0.000001        | 0.005915        | 0.000000   | 0.007500   | 0.000001    | 0.000001    |
+| 6000000 | 0.000000        | 0.009176        | 0.000000   | 0.010153   | 0.000001    | 0.000001    |
+| 8000000 | 0.000000        | 0.011319        | 0.000000   | 0.014508   | 0.000001    | 0.000001    |
 
 ### TP2 Partie 2 : MaxEtMinA vs MaxEtMinB
 
@@ -131,192 +123,478 @@ Le programme propose alors un menu interactif pour générer les fichiers de don
 
 ## Graphiques
 
-Ordre des graphiques réalisés dans Excel :
+**Ordre des graphiques réalisés dans Excel :**
 
-1. Triés : Worst vs Best cases  
-3. Non triés : Worst vs Best cases  
-5. Dichotomie : Worst vs Best cases  
-7. Comparaison globale Worst cases  
-9. Comparaison globale Best cases  
-11. MaxEtMin Comparaisons A vs B  
-13. MaxEtMin Temps A vs B  
+1. **Triés : Worst vs Best cases**
+   Visualisation des temps pour Trié + et Trié − en comparant le meilleur et le pire cas.
+   <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/user-attachments/assets/2252fcb5-787d-4838-9aba-5e4dba9a2796" />
 
-Les axes :
+3. **Non triés : Worst vs Best cases**
+   Visualisation des temps pour Naïf + et Naïf − pour comparer meilleur et pire cas.
+   <img width="596" height="356" alt="Screenshot 2025-11-23 202136" src="https://github.com/user-attachments/assets/65782053-9e25-4c76-b8cc-9f74bb718083" />
 
-- Axe X : Taille du tableau (N).  
-- Axe Y : Temps (s) ou nombre de comparaisons.  
+5. **Dichotomie : Worst vs Best cases**
+   Visualisation des temps pour Dicho + et Dicho −.
+   <img width="595" height="355" alt="Screenshot 2025-11-23 202412" src="https://github.com/user-attachments/assets/4caf5890-b75d-4cf1-b3ac-1254a9bd7c9c" />
 
-Les graphes permettent de visualiser la croissance temporelle et le nombre de comparaisons pour chaque algorithme.
+7. **Comparaison globale Worst cases**
+   Tous les algorithmes ensemble (Naïf, Trié, Dicho) pour le pire cas.
+   <img width="598" height="358" alt="Screenshot 2025-11-23 202633" src="https://github.com/user-attachments/assets/8b3b82dc-6388-4372-81c7-7ecb4d5905ec" />
+
+9. **Comparaison globale Best cases**
+   Tous les algorithmes ensemble pour le meilleur cas.
+   <img width="600" height="356" alt="Screenshot 2025-11-23 202826" src="https://github.com/user-attachments/assets/ba04bd6c-58d1-4b3f-9be9-8b882998dcee" />
+
+11. **MaxEtMin Comparaisons A vs B**
+    Visualisation du nombre de comparaisons pour MaxEtMinA et MaxEtMinB.
+    <img width="596" height="350" alt="Screenshot 2025-11-23 203908" src="https://github.com/user-attachments/assets/eb58a1a2-7e8e-41ea-97b2-55a675ef65fa" />
+
+13. **MaxEtMin Temps A vs B**
+    Visualisation du temps d'exécution pour MaxEtMinA et MaxEtMinB.
+    <img width="592" height="346" alt="Screenshot 2025-11-23 204034" src="https://github.com/user-attachments/assets/31d4bf3f-dae7-4b9c-b3d0-c7a8425d2b1c" />
+
+*Les axes :*
+
+* X → Taille du tableau (N)
+* Y → Temps (s) ou Comparaisons
+* Les graphes permettent de visualiser la **croissance temporelle et le nombre de comparaisons** pour chaque algorithme.
 
 ---
 
 ## Détails algorithmiques
 
-### Algorithmes Non-Trié
+### Recherche Non-Triée (Naïf)
 
-- Parcourt tout le tableau pour rechercher un élément donné.  
-- Comparaisons : jusqu’à N dans le pire cas, 1 dans le meilleur cas.  
-- Temps : proportionnel à la taille du tableau.  
+* Parcourt tout le tableau pour rechercher un élément donné.
+* Comparaisons : jusqu'à N dans le pire cas, 1 dans le meilleur cas.
+* Temps : proportionnel à la taille du tableau.
 
-Complexité :
+#### Nombre d'itérations (pire cas)
+* Pire cas : élément absent ou en dernière position
+* Boucle pour i = 0 → N-1 → **N itérations**
 
-- Meilleur cas : O(1)  
-- Pire cas : O(N)  
-- Cas moyen : O(N)  
+#### Coût total
+* Comparaison, incrément ≈ 2N unités
+* **Complexité finale : O(N)**
 
-### Algorithmes Triés
+```c
+bool naive(int* arr, int n, int value) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == value) return true;
+    }
+    return false;
+}
+```
 
-- Exploitent l'ordre croissant pour limiter les comparaisons lors de la recherche.  
-- Comparaisons : jusqu’à N dans le pire cas si l’élément est absent, moins si trouvé tôt.  
-- Temps : proportionnel au nombre d’éléments visités jusqu’à l’élément recherché.  
+* **Complexité :**
+  * Meilleur cas : O(1)
+  * Pire cas : O(N)
+  * Cas moyen : O(N)
 
-Complexité :
+---
 
-- Meilleur cas : O(1)  
-- Pire cas : O(N)  
-- Cas moyen : O(N/2) ≈ O(N)  
+### Recherche Triée (Séquentielle optimisée)
 
-### Algorithme Dichotomique
+* Exploite l'ordre croissant pour limiter les comparaisons lors de la recherche.
+* Comparaisons : jusqu'à N dans le pire cas si l'élément est absent, moins si trouvé tôt.
+* Temps : proportionnel au nombre d'éléments jusqu'à l'élément recherché.
 
-- Recherche itérative en divisant le tableau trié par 2 à chaque étape.  
-- Comparaisons : logarithmiques par rapport à N.  
+#### Nombre d'itérations (pire cas)
+* Pire cas : élément en dernière position ou absent
+* Boucle pour i = 0 → N-1 → **N itérations**
 
-Complexité :
+#### Coût total
+* Comparaison, incrément ≈ 2N unités
+* **Complexité finale : O(N)**
 
-- Meilleur cas : O(1)  
-- Pire cas : O(log N)  
-- Cas moyen : O(log N)  
+```c
+bool seq_trie(int* arr, int n, int value) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == value) return true;
+        if (arr[i] > value) return false; // arrêt précoce possible
+    }
+    return false;
+}
+```
 
-### MaxEtMinA vs MaxEtMinB
+* **Complexité :**
+  * Meilleur cas : O(1)
+  * Pire cas : O(N)
+  * Cas moyen : O(N/2) ≈ O(N)
 
-- Détermination simultanée du maximum et du minimum.  
-- MaxEtMinA : compare chaque élément individuellement au max et au min courants.  
-- MaxEtMinB : compare les éléments par paires pour réduire le nombre de comparaisons.  
+---
 
-Complexité théorique :
+### Recherche Dichotomique
 
-- MaxEtMinA :  
-  - Comparaisons : \(2N - 2\)  
-  - Temps : O(N)  
-- MaxEtMinB :  
-  - Comparaisons : \(\lfloor 3N/2 \rfloor - 2\)  
-  - Temps : O(N)  
+* Recherche itérative en divisant le tableau trié par 2 à chaque étape.
+* Comparaisons : logarithmiques par rapport à N.
+
+#### Nombre d'itérations (pire cas)
+* Pire cas : élément absent
+* Boucle divise l'intervalle par 2 → **log₂(N) itérations**
+
+#### Coût total
+* Comparaison, calcul milieu ≈ 3 log₂(N) unités
+* **Complexité finale : O(log N)**
+
+```c
+bool dicho(int* arr, int n, int value) {
+    int a = 0, b = n - 1;
+    while (a <= b) {
+        int m = (a + b) / 2;
+        if (arr[m] == value) return true;
+        else if (arr[m] < value) a = m + 1;
+        else b = m - 1;
+    }
+    return false;
+}
+```
+
+* **Complexité :**
+  * Meilleur cas : O(1)
+  * Pire cas : O(log N)
+  * Cas moyen : O(log N)
+
+---
+
+### MaxEtMinA : Parcours simple
+
+* Compare chaque élément individuellement au max et au min courants.
+
+#### Nombre d'itérations
+* Boucle pour i = 1 → N-1 → **N-1 itérations**
+
+#### Nombre de comparaisons
+* 2 comparaisons par itération → **2(N-1) = 2N − 2 comparaisons**
+
+```c
+void MaxEtMinA(int *arr, int n, int *out_min, int *out_max, long *comp_count) {
+    if (n <= 0) { *out_min = *out_max = 0; *comp_count = 0; return; }
+    int mn = arr[0], mx = arr[0];
+    long comps = 0;
+    for (int i = 1; i < n; i++) {
+        comps++; if (arr[i] < mn) mn = arr[i];
+        comps++; if (arr[i] > mx) mx = arr[i];
+    }
+    *out_min = mn; *out_max = mx; *comp_count = comps;
+}
+```
+
+* **Complexité :**
+  * Comparaisons : 2N − 2
+  * Temps : O(N)
+
+---
+
+### MaxEtMinB : Comparaison par paires
+
+* Compare les éléments par paires pour réduire le nombre de comparaisons.
+
+#### Nombre d'itérations
+* Boucle pour i = start → N-1, step 2 → **(N-start)/2 itérations**
+
+#### Nombre de comparaisons
+* 3 comparaisons par paire → **⌊3N/2⌋ − 2 comparaisons**
+
+```c
+void MaxEtMinB(int *arr, int n, int *out_min, int *out_max, long *comp_count) {
+    if (n <= 0) { *out_min = *out_max = 0; *comp_count = 0; return; }
+    long comps = 0;
+    int mn, mx;
+    int start = 0;
+    if (n % 2 == 1) {
+        mn = mx = arr[0];
+        start = 1;
+    } else {
+        comps++;
+        if (arr[0] < arr[1]) { mn = arr[0]; mx = arr[1]; }
+        else { mn = arr[1]; mx = arr[0]; }
+        start = 2;
+    }
+    for (int i = start; i < n; i += 2) {
+        comps++;
+        int local_min, local_max;
+        if (arr[i] < arr[i+1]) { local_min = arr[i]; local_max = arr[i+1]; }
+        else { local_min = arr[i+1]; local_max = arr[i]; }
+        comps++; if (local_min < mn) mn = local_min;
+        comps++; if (local_max > mx) mx = local_max;
+    }
+    *out_min = mn; *out_max = mx; *comp_count = comps;
+}
+```
+
+* **Complexité :**
+  * Comparaisons : ⌊3N/2⌋ − 2
+  * Temps : O(N)
+
+---
+
+### Fonctions utilitaires
+
+#### Mesure du temps
+
+```c
+double get_time(clock_t start, clock_t end) {
+    return (double)(end - start) / CLOCKS_PER_SEC;
+}
+```
+
+#### Mesure du temps moyen d'un algorithme de recherche
+
+```c
+double mesurer_temps(bool (*search)(int*, int, int), int* arr, int n, int value, int reps) {
+    double total = 0.0;
+    for (int r = 0; r < reps; r++) {
+        clock_t start = clock();
+        volatile bool found = search(arr, n, value);
+        (void)found;
+        clock_t end = clock();
+        total += get_time(start, end);
+    }
+    return total / reps;
+}
+```
+
+#### Génération des fichiers de données
+
+```c
+void generer_fichiers(int n) {
+    FILE *fichier_trie = fopen("elements_tries.txt", "w");
+    FILE *fichier_non_trie = fopen("elements_non_tries.txt", "w");
+    
+    if (fichier_trie == NULL || fichier_non_trie == NULL) {
+        printf("Erreur lors de l'ouverture des fichiers\n");
+        return;
+    }
+    
+    int* arr = malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        arr[i] = i * 2;
+    }
+    
+    fprintf(fichier_trie, "%d\n", n);
+    for (int i = 0; i < n; i++) {
+        fprintf(fichier_trie, "%d\n", arr[i]);
+    }
+    
+    srand(time(NULL));
+    for (int i = 0; i < n; i++) {
+        int j = rand() % n;
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    fprintf(fichier_non_trie, "%d\n", n);
+    for (int i = 0; i < n; i++) {
+        fprintf(fichier_non_trie, "%d\n", arr[i]);
+    }
+    
+    fclose(fichier_trie);
+    fclose(fichier_non_trie);
+    free(arr);
+    
+    printf("Fichiers générés avec succès pour %d éléments\n", n);
+}
+```
+
+#### Structure TableauInfo
+
+```c
+typedef struct {
+    int* tableau;
+    int taille;
+    bool est_trie;
+} TableauInfo;
+```
+
+#### Lecture des fichiers et création des tableaux
+
+```c
+TableauInfo* creer_tableaux_depuis_fichiers() {
+    int sizes[] = {
+        100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
+        1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000,
+        1800000, 2000000, 4000000, 6000000, 8000000
+    };
+    int num_sizes = 22;
+    
+    TableauInfo* tableaux = malloc(44 * sizeof(TableauInfo));
+    
+    FILE *fichier_trie = fopen("elements_tries.txt", "r");
+    FILE *fichier_non_trie = fopen("elements_non_tries.txt", "r");
+    
+    if (fichier_trie == NULL || fichier_non_trie == NULL) {
+        printf("Erreur : Les fichiers n'existent pas.\n");
+        free(tableaux);
+        return NULL;
+    }
+    
+    int n_trie, n_non_trie;
+    fscanf(fichier_trie, "%d", &n_trie);
+    fscanf(fichier_non_trie, "%d", &n_non_trie);
+    
+    int* elements_tries = malloc(n_trie * sizeof(int));
+    for (int i = 0; i < n_trie; i++) {
+        fscanf(fichier_trie, "%d", &elements_tries[i]);
+    }
+    
+    int* elements_non_tries = malloc(n_non_trie * sizeof(int));
+    for (int i = 0; i < n_non_trie; i++) {
+        fscanf(fichier_non_trie, "%d", &elements_non_tries[i]);
+    }
+    
+    fclose(fichier_trie);
+    fclose(fichier_non_trie);
+    
+    for (int i = 0; i < num_sizes; i++) {
+        int taille = (sizes[i] <= n_trie) ? sizes[i] : n_trie;
+        
+        tableaux[i * 2].tableau = malloc(taille * sizeof(int));
+        tableaux[i * 2].taille = taille;
+        tableaux[i * 2].est_trie = true;
+        for (int j = 0; j < taille; j++) {
+            tableaux[i * 2].tableau[j] = elements_tries[j];
+        }
+        
+        tableaux[i * 2 + 1].tableau = malloc(taille * sizeof(int));
+        tableaux[i * 2 + 1].taille = taille;
+        tableaux[i * 2 + 1].est_trie = false;
+        for (int j = 0; j < taille; j++) {
+            tableaux[i * 2 + 1].tableau[j] = elements_non_tries[j];
+        }
+    }
+    
+    free(elements_tries);
+    free(elements_non_tries);
+    
+    return tableaux;
+}
+```
+
+#### Libération mémoire
+
+```c
+void liberer_tableaux(TableauInfo* tableaux) {
+    if (tableaux == NULL) return;
+    for (int i = 0; i < 44; i++) {
+        free(tableaux[i].tableau);
+    }
+    free(tableaux);
+}
+```
+
+#### Exécution des benchmarks
+
+```c
+void run_benchmarks(TableauInfo* tableaux) {
+    if (tableaux == NULL) return;
+    int sizes[] = {
+        100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000,
+        1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000,
+        1800000, 2000000, 4000000, 6000000, 8000000
+    };
+    int num_sizes = 22;
+    int reps = 5;
+    
+    printf("\nN          | EletsNonTries+ (s)   | EletsNonTries- (s)   | ...\n");
+    printf("-----------|----------------------|----------------------|...\n");
+    
+    for (int i = 0; i < num_sizes; i++) {
+        int idx_sorted = i * 2;
+        int idx_non_sorted = i * 2 + 1;
+        TableauInfo sorted = tableaux[idx_sorted];
+        TableauInfo nonsorted = tableaux[idx_non_sorted];
+        int n = sorted.taille;
+        
+        int val_best_non = nonsorted.tableau[0];
+        int val_best_trie = sorted.tableau[0];
+        int val_best_dicho = sorted.tableau[n/2];
+        int val_absent = -1;
+        int val_last_non = nonsorted.tableau[n - 1];
+        int val_last_trie = sorted.tableau[n - 1];
+        int val_last_dicho = sorted.tableau[n - 1];
+        
+        double t_non_plus = mesurer_temps(naive, nonsorted.tableau, n, val_best_non, reps);
+        double t_trie_seq_plus = mesurer_temps(seq_trie, sorted.tableau, n, val_best_trie, reps);
+        double t_trie_dicho_plus = mesurer_temps(dicho, sorted.tableau, n, val_best_dicho, reps);
+        
+        double t_non_present_last = mesurer_temps(naive, nonsorted.tableau, n, val_last_non, reps);
+        double t_non_absent = mesurer_temps(naive, nonsorted.tableau, n, val_absent, reps);
+        double t_non_minus = (t_non_present_last > t_non_absent) ? t_non_present_last : t_non_absent;
+        
+        double t_trie_seq_present_last = mesurer_temps(seq_trie, sorted.tableau, n, val_last_trie, reps);
+        double t_trie_seq_absent = mesurer_temps(seq_trie, sorted.tableau, n, val_absent, reps);
+        double t_trie_seq_minus = (t_trie_seq_present_last > t_trie_seq_absent) ? t_trie_seq_present_last : t_trie_seq_absent;
+        
+        double t_trie_dicho_present_last = mesurer_temps(dicho, sorted.tableau, n, val_last_dicho, reps);
+        double t_trie_dicho_absent = mesurer_temps(dicho, sorted.tableau, n, val_absent, reps);
+        double t_trie_dicho_minus = (t_trie_dicho_present_last > t_trie_dicho_absent) ? t_trie_dicho_present_last : t_trie_dicho_absent;
+        
+        printf("%-11d | %-20.6f | %-20.6f | %-20.6f | %-20.6f | %-20.6f | %-20.6f\n",
+               sizes[i], t_non_plus, t_non_minus, t_trie_seq_plus, t_trie_seq_minus,
+               t_trie_dicho_plus, t_trie_dicho_minus);
+    }
+}
+```
+
+#### Fonction principale (main)
+
+```c
+int main() {
+    TableauInfo* tableaux = NULL;
+    int choice = 0;
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1) Générer les fichiers de données (8 000 000 éléments)\n");
+        printf("2) Créer les tableaux depuis les fichiers et exécuter les algorithmes (benchmarks)\n");
+        printf("3) Quitter\n");
+        printf("Choix: ");
+        if (scanf("%d", &choice) != 1) {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF) {}
+            printf("Choix invalide\n");
+            continue;
+        }
+        
+        if (choice == 1) {
+            printf("Génération des fichiers...\n");
+            generer_fichiers(8000000);
+        } else if (choice == 2) {
+            if (tableaux != NULL) {
+                liberer_tableaux(tableaux);
+                tableaux = NULL;
+            }
+            printf("Création des tableaux depuis les fichiers...\n");
+            tableaux = creer_tableaux_depuis_fichiers();
+            if (tableaux == NULL) {
+                printf("Échec de création des tableaux.\n");
+                continue;
+            }
+            printf("Exécution des benchmarks...\n");
+            run_benchmarks(tableaux);
+            printf("\nBenchmarks terminés.\n");
+        } else if (choice == 3) {
+            printf("Sortie.\n");
+            break;
+        } else {
+            printf("Choix inconnu\n");
+        }
+    }
+    
+    if (tableaux != NULL) liberer_tableaux(tableaux);
+    return 0;
+}
+```
 
 ---
 
 ## Rôles et Contributions
 
-- Code et développement : ABDERRAHIM Sidali 222231402319  
-- Rédaction du rapport : BELDJERDI Tayeb Yasser 222231404112  
-- Tests et évaluations : GACEM Abdenour 222231640608  
-- Collecte des données : DALIL Faycal 222231658510  
-
----
-
-## Fonctions C utilisées
-
-Cette section liste les principales fonctions C du projet, avec leur rôle.
-
-### Fonctions de recherche
-
-- `bool naive(int* arr, int n, int value);`  
-  Recherche séquentielle dans un tableau non trié, utilisée pour les cas Non-Trié (best et worst).  
-
-- `bool dicho(int* arr, int n, int value);`  
-  Recherche dichotomique dans un tableau trié, utilisée pour les scénarios Dicho + et Dicho −.  
-
-- `bool seq_trie(int* arr, int n, int value);`  
-  Recherche séquentielle optimisée pour un tableau trié, avec arrêt dès que `arr[i] > value`.  
-
-### Fonctions de mesure du temps
-
-- `double get_time(clock_t start, clock_t end);`  
-  Convertit la différence de temps processeur en secondes à l’aide de `CLOCKS_PER_SEC`.  
-
-- `double mesurer_temps(bool (*search)(int*, int, int), int* arr, int n, int value, int reps);`  
-  Mesure le temps moyen d’un algorithme de recherche donné (pointeur de fonction) sur plusieurs répétitions.  
-
-### Fonctions de génération et collecte de données
-
-- `void generer_fichiers(int n);`  
-  Génère deux fichiers texte :  
-  - `elements_tries.txt` contenant un tableau trié de taille n.  
-  - `elements_non_tries.txt` contenant les mêmes éléments mélangés aléatoirement.  
-
-- `typedef struct { int* tableau; int taille; bool est_trie; } TableauInfo;`  
-  Structure pour encapsuler un tableau, sa taille et un indicateur “trié / non trié”.  
-
-- `TableauInfo* creer_tableaux_depuis_fichiers();`  
-  Lit les fichiers de données et crée 44 tableaux en mémoire (22 triés + 22 non triés) correspondant aux différentes tailles N.  
-
-- `void liberer_tableaux(TableauInfo* tableaux);`  
-  Libère la mémoire allouée pour les 44 tableaux.  
-
-### Fonction de benchmarks
-
-- `void run_benchmarks(TableauInfo* tableaux);`  
-  - Pour chaque taille N, sélectionne les tableaux triés et non triés.  
-  - Mesure les temps best et worst pour :  
-    - Non Trié (naive)  
-    - Trié séquentiel (seq_trie)  
-    - Dichotomie (dicho)  
-  - Affiche les résultats sous forme de tableau formaté, prêt à être exporté vers des fichiers texte ou Excel.  
-
-### Fonction principale
-
-- `int main();`  
-  - Gère un menu interactif :  
-    1) Générer les fichiers de données (8 000 000 éléments)  
-    2) Créer les tableaux depuis les fichiers et exécuter les benchmarks  
-    3) Quitter  
-  - Coordonne l’appel aux fonctions de génération, de création des tableaux et de benchmarks.  
-
----
-
-## Lien entre fonctions et tâches
-
-Cette section relie les tâches du projet aux fonctions concrètes utilisées dans le code.
-
-### Code et développement
-
-Fonctions principalement impliquées :
-
-- `naive`  
-- `dicho`  
-- `seq_trie`  
-- `generer_fichiers`  
-- `creer_tableaux_depuis_fichiers`  
-- `run_benchmarks`  
-- `liberer_tableaux`  
-- `main`  
-
-Ces fonctions constituent la logique principale du TP (implémentation des algorithmes, gestion des données et organisation du programme).
-
-### Rédaction du rapport
-
-La rédaction du rapport s’appuie sur :
-
-- La compréhension des fonctions `naive`, `dicho`, `seq_trie` (comportement et complexité).  
-- Les résultats fournis par `run_benchmarks` (tableau de temps best/worst pour chaque N).  
-- La description des structures de données `TableauInfo` et de la génération de données via `generer_fichiers` et `creer_tableaux_depuis_fichiers`.  
-
-### Tests et évaluations
-
-Les tests et évaluations s’appuient sur :
-
-- `run_benchmarks` pour lancer systématiquement les mesures sur toutes les tailles de tableaux.  
-- `mesurer_temps` pour obtenir un temps moyen plus fiable sur plusieurs répétitions `reps`.  
-- Les différents scénarios testés dans `run_benchmarks` :  
-  - Best case (élément au début, au milieu, etc.).  
-  - Worst case (élément absent ou en dernière position, puis sélection du pire temps).  
-
-### Collecte des données
-
-La collecte des données expérimentales repose sur :
-
-- `generer_fichiers` pour produire des jeux de données cohérents et reproductibles.  
-- `creer_tableaux_depuis_fichiers` pour reconstruire en mémoire les tableaux triés et non triés correspondant aux différentes tailles N.  
-- `run_benchmarks` pour afficher/écrire les temps dans un format tabulaire pouvant être récupéré dans des fichiers (`tp2pt1.txt`, `tp2pt2.txt`) et ensuite importé dans Excel.  
+* **Code et développement** : ABDERRAHIM Sidali 222231402319
+* **Rédaction du rapport** : BELDJERDI Tayeb Yasser 222231404112
+* **Tests et évaluations** : GACEM Abdenour 222231640608
+* **Collecte des données** : DALIL Faycal 222231658510
 
 ---
 
