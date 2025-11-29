@@ -115,23 +115,6 @@ Temps d'exécution vs Taille de matrice
 
 **Observation** : La courbe montre une croissance cubique caractéristique confirmant O(n³)
 
-#### Graphique 2 : Utilisation Mémoire O(n²)
-```
-Mémoire (MB) vs Taille de matrice
-^
-|               •
-|             •
-|           •
-|         •
-|       •
-|     •
-|   •
-| •
-+-----------------> n
-  100  500  1000 5000
-```
-
-**Observation** : Croissance quadratique de l'utilisation mémoire
 
 #### Tableau 3 : Calculs d'Utilisation Mémoire
 
@@ -225,24 +208,7 @@ Temps (s) vs Taille de Matrice
 
 **Observation** : Écart croissant entre les deux algorithmes
 
-#### Graphique 4 : Accélération de l'Algorithme Optimisé
-```
-Accélération vs Taille de Matrice
-^
-|                 •
-|               •
-|             •
-|           •
-|         •
-|       •
-|     •
-|   •
-| •
-+-----------------> n
-  500   5000   40000
-```
 
-**Observation** : Efficacité croissante avec la taille des données
 
 #### Tableau 6 : Analyse de Performance - Points Clés
 
