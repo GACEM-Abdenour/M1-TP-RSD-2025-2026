@@ -97,23 +97,9 @@ void produit_matrices(int n, int m, int p,
 | 5000       | 278.567   | 15.6x       | 125×10⁹    | 15.6x             |
 
 #### Graphique 1 : Complexité Cubique O(n³)
-```
-Temps d'exécution vs Taille de matrice
-^
-|                 •
-|               •
-|             •
-|           •
-|         •
-|       •
-|     •
-|   •
-| •
-+-----------------> n
-  100  500  1000 5000
-```
+  <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-24-02.png" />
 
-**Observation** : La courbe montre une croissance cubique caractéristique confirmant O(n³)
+**Observation** : La courbe montre une croissance cubique caractéristique confirmant O(n³) qui correspond avec la complexity theorique
 
 
 #### Tableau 3 : Calculs d'Utilisation Mémoire
@@ -193,12 +179,11 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
 | 10000          | 100                 | 980,298,010,000 | 0.464436 |
 
 #### Graphique 3 : Comparaison Temps d'Exécution
-  <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-24-02.png" />
   <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-42-20.png" />
 
 
 **Observation** : Écart croissant entre les deux algorithmes
-
+**remarque**: ce graph et pour n'= 100 (pire cas). (taille de matrice petite)
 
 
 #### Tableau 6 : Analyse de Performance - Points Clés
