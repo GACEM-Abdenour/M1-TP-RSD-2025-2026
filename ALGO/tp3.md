@@ -124,6 +124,8 @@ Temps d'exécution vs Taille de matrice
 | 500        | 3 × 500² × 4B = 3,000,000B ≈ 2.861MB | 2.861MB | 2.861MB |
 | 1000       | 3 × 1000² × 4B = 12,000,000B ≈ 11.444MB | 11.444MB | 11.444MB |
 | 5000       | 3 × 5000² × 4B = 300,000,000B ≈ 286.102MB | 286.102MB | 286.102MB |
+
+#Le crash:
   <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-04-06.png" />
 
 ### Analyse Exercice 1
