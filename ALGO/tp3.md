@@ -268,4 +268,41 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
 
 ---
 
+
+### Fonctions de generation de donnes:
+
+```c
+int **allocate_matrix(int rows, int cols) {
+    int **m = malloc(rows * sizeof(int *));
+    if (!m) return NULL;
+
+    for (int i = 0; i < rows; i++) {
+        m[i] = malloc(cols * sizeof(int));
+        if (!m[i]) {
+            for (int j = 0; j < i; j++) free(m[j]);
+            free(m);
+            return NULL;
+        }
+    }
+    return m;
+}
+
+void free_matrix(int **m, int rows) {
+    for (int i = 0; i < rows; i++) {
+        free(m[i]);
+    }
+    free(m);
+}
+
+void fill_random_matrix(int **M, int rows, int cols) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            M[i][j] = rand() % 10;
+}
+
+```
+
+
+
+
 **Fin du Rapport**
