@@ -193,21 +193,10 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
 | 10000          | 100                 | 980,298,010,000 | 0.464436 |
 
 #### Graphique 3 : Comparaison Temps d'Exécution
-```
-Temps (s) vs Taille de Matrice
-^
-| • (Naïf)
-|   •
-|     •
-|       •
-|         •
-|           •
-|             •
-|               •
-|                 • (Optimisé)
-+-----------------> n
-  1000    5000    10000
-```
+  <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-24-02.png
+" />
+
+
 
 **Observation** : Écart croissant entre les deux algorithmes
 
