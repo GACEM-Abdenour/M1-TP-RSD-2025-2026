@@ -183,8 +183,8 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
   <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-51-33.png" />
 
 
-**Observation** : Écart croissant entre les deux algorithmes
-**remarque**: ce graph et pour n'= 100 (pire cas). (taille de matrice petite)
+**Observation** : Écart croissant entre les deux algorithmes et qui corresponde a la complexity theorique O(n^2*n'^2) et O(n*n'*logn)
+**remarque**: ces 2 graphs et pour n'= 100 (pire cas). (taille de matrice petite pour)
 
 
 #### Tableau 6 : Analyse de Performance - Points Clés
