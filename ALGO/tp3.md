@@ -185,6 +185,7 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
 
 **Observation** : Écart croissant entre les deux algorithmes et qui corresponde a la complexity theorique O(n^2*n'^2) et O(n*n'*logn)
 **remarque**: ces 2 graphs et pour n'= 100 (pire cas). (taille de matrice petite pour)
+**conclusion**:l'algorithme 2 et plus performant qui est correspond a l'expectation theorique
 
 
 #### Tableau 6 : Analyse de Performance - Points Clés
