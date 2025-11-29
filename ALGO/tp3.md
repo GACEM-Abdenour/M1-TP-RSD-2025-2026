@@ -269,10 +269,10 @@ Temps (s) vs Taille de Matrice
 
 | Membre | Matricule | Rôle Principal |
 |--------|-----------|----------------|
-| ABDERRAHIM Sidali | 222231402319 | Implémentation des algorithmes |
-| BELDJERDI Tayeb Yasser | 222231404112 | Tests et collecte de données |
-| GACEM Abdenour | 222231640608 | Analyse des résultats |
-| DALIL Faycal | 222231658510 | Rédaction du rapport |
+| DALIL Faycal | 222231658510  | Implémentation des algorithmes |
+| GACEM Abdenour | 222231640608 | Tests et collecte de données |
+| BELDJERDI Tayeb Yasser  | 222231640608 | Analyse des résultats |
+| ABDERRAHIM Sidali| 222231658510 | Rédaction du rapport |
 
 ---
 
