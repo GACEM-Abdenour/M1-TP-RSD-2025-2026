@@ -272,7 +272,7 @@ Temps (s) vs Taille de Matrice
 | DALIL Faycal | 222231658510  | Implémentation des algorithmes |
 | GACEM Abdenour | 222231640608 | Tests et collecte de données |
 | BELDJERDI Tayeb Yasser  | 222231404112 | Analyse des résultats |
-| ABDERRAHIM Sidali| 222231658510 | Rédaction du rapport |
+| ABDERRAHIM Sidali| 222231402319 | Rédaction du rapport |
 
 ---
 
