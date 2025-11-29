@@ -194,7 +194,7 @@ Deux algorithmes pour rechercher une sous-matrice B dans une matrice A :
 
 #### Graphique 3 : Comparaison Temps d'Exécution
   <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-24-02.png" />
-  <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="  https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-42-20.png" />
+  <img width="592" height="354" alt="Screenshot 2025-11-23 201734" src="https://github.com/HumbleFriedToast/docs/blob/main/Screenshot%20from%202025-11-29%2023-42-20.png" />
 
 
 **Observation** : Écart croissant entre les deux algorithmes
