@@ -11,6 +11,7 @@ public class p4{  // server-3
 
     public static void main(String[] args){
     try{
+    System.out.println("Server IP: " + java.net.InetAddress.getLocalHost().getHostAddress());
     ServerSocket server3 = new ServerSocket(6002);
     System.out.println("Server-3 is listening on port 6002: ");
     while(true){
